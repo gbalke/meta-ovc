@@ -1,0 +1,52 @@
+diff --git a/board/karo/tx8m/qsxm-mm60_env.txt b/board/karo/tx8m/qsxm-mm60_env.txt
+index 019a8e298f..dad25f3fe3 100644
+--- a/board/karo/tx8m/qsxm-mm60_env.txt
++++ b/board/karo/tx8m/qsxm-mm60_env.txt
+@@ -1,7 +1,7 @@
+ # default environment for QSXM-MM60
+ append_bootargs=clk_ignore_unused debug
+ autoload=no
+-baseboard=qsbase3
++baseboard=qsbase3-ovc
+ boot_mode=mmc
+ bootargs_mmc=run default_bootargs; setenv bootargs ${bootargs} root=PARTUUID=${uuid_rootfs} rootwait ${append_bootargs}
+ bootargs_nfs=run default_bootargs; setenv bootargs ${bootargs} root=/dev/nfs nfsroot=${nfs_server}:${nfsroot},nolock,v3 ip=dhcp ${append_bootargs}
+diff --git a/board/karo/tx8m/qsxp-ml81_env.txt b/board/karo/tx8m/qsxp-ml81_env.txt
+index ae036e6c76..36a2043e57 100644
+--- a/board/karo/tx8m/qsxp-ml81_env.txt
++++ b/board/karo/tx8m/qsxp-ml81_env.txt
+@@ -1,7 +1,7 @@
+ # default environment for QSXP-ML81
+ append_bootargs=clk_ignore_unused debug
+ autoload=no
+-baseboard=qsbase3
++baseboard=qsbase3-ovc
+ boot_mode=mmc
+ bootargs_mmc=run default_bootargs; setenv bootargs ${bootargs} root=PARTUUID=${uuid_rootfs} rootwait ${append_bootargs}
+ bootargs_nfs=run default_bootargs; setenv bootargs ${bootargs} root=/dev/nfs nfsroot=${nfs_server}:${nfsroot},nolock,v3 ip=dhcp ${append_bootargs}
+diff --git a/board/karo/tx8m/qsxm-mm60_env.txt b/board/karo/tx8m/qsxm-mm60_env.txt
+index dad25f3fe3..dc85b6fc72 100644
+--- a/board/karo/tx8m/qsxm-mm60_env.txt
++++ b/board/karo/tx8m/qsxm-mm60_env.txt
+@@ -19,7 +19,7 @@ fastboot_dev=mmc
+ fdtaddr=43000000
+ fdtsave=save mmc ${mmcdev} ${fdt_addr} ${fdt_file} ${fdt_size}
+ fdt_addr=43000000
+-fdt_file=imx8mm-qsxm-mm60-qsbase3.dtb
++fdt_file=imx8mm-qsxm-mm60-qsbase3-ovc.dtb
+ fdt_high=63000000
+ initrd_addr=-
+ initrd_high=63800000
+diff --git a/board/karo/tx8m/qsxp-ml81_env.txt b/board/karo/tx8m/qsxp-ml81_env.txt
+index 36a2043e57..af925a3dd1 100644
+--- a/board/karo/tx8m/qsxp-ml81_env.txt
++++ b/board/karo/tx8m/qsxp-ml81_env.txt
+@@ -19,7 +19,7 @@ fastboot_dev=mmc
+ fdtaddr=43000000
+ fdtsave=save mmc ${mmcdev} ${fdt_addr} ${fdt_file} ${fdt_size}
+ fdt_addr=43000000
+-fdt_file=imx8mp-qsxp-ml81-qsbase3.dtb
++fdt_file=imx8mp-qsxp-ml81-qsbase3-ovc.dtb
+ fdt_high=63000000
+ initrd_addr=-
+ initrd_high=63800000
