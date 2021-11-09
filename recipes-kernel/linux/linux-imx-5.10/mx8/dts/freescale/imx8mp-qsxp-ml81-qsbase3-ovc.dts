@@ -11,6 +11,62 @@
 
 / {
 	model = "ovc-mini (Ka-Ro QSXP-ML81 QSBase3)";
+
+/*
+	reserved-memory {
+	  #address-cells = <2>;
+	  #size-cells = <2>;
+	  ranges;
+
+	  cma_buffer: framebuffer@0 {
+		 compatible = "shared-dma-pool";
+		 reusable;
+		 size = <0x0 0x10000000>;
+		 label = "cma_buffer";
+		 linux,cma-default;
+	  };
+	};
+
+	udmabuf@0 {
+	  compatible = "ikwzm,u-dma-buf";
+	  device-name = "cam0_0";
+	  size = <0x1000000>; // 16 MB
+	  sync-size = <0x1000000>; // 16 MB
+	  sync-direction = <2>; // From device
+	  //dma-coherent; // Guaranteed cache coherency
+	  memory_region = <&cma_buffer>;
+	};
+
+	udmabuf@1 {
+	  compatible = "ikwzm,u-dma-buf";
+	  device-name = "cam0_1";
+	  size = <0x1000000>; // 16 MB
+	  sync-size = <0x1000000>; // 16 MB
+	  sync-direction = <2>; // From device
+	  //dma-coherent; // Guaranteed cache coherency
+	  memory_region = <&cma_buffer>;
+	};
+
+	udmabuf@2 {
+	  compatible = "ikwzm,u-dma-buf";
+	  device-name = "cam0_2";
+	  size = <0x1000000>; // 16 MB
+	  sync-size = <0x1000000>; // 16 MB
+	  sync-direction = <2>; // From device
+	  //dma-coherent; // Guaranteed cache coherency
+	  memory_region = <&cma_buffer>;
+	};
+
+	udmabuf@3 {
+	  compatible = "ikwzm,u-dma-buf";
+	  device-name = "cam0_3";
+	  size = <0x1000000>; // 16 MB
+	  sync-size = <0x1000000>; // 16 MB
+	  sync-direction = <2>; // From device
+	  //dma-coherent; // Guaranteed cache coherency
+	  memory_region = <&cma_buffer>;
+	};
+*/
 };
 
 &pcie {
@@ -29,4 +85,74 @@
 
 &uart1 { /* BT */
 	status = "okay";
+};
+
+&mipi_csi_0 {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    status = "okay";
+
+/*
+    port@0 {
+        reg = <0>;
+        mipi_csi0_ep: endpoint {
+            //remote-endpoint = <&ovc_cam_0>;
+            data-lanes = <4>;
+            csis-hs-settle = <13>;
+            csis-clk-settle = <2>;
+            csis-wclk;
+        };
+    };
+*/
+};
+
+/*
+&i2c2 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c2>;
+	status = "okay";
+
+	ovc_cam: sensor@10 {
+		compatible = "sony,imx219";
+		reg = <0x10>;
+		pinctrl-names = "default";
+		reset-gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>;
+		clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+		clock-names = "xclk";
+		assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+		assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+		assigned-clock-rates = <24000000>;
+		csi_id = <0>;
+		mclk = <24000000>;
+		mclk_source = <0>;
+		mipi_csi;
+		status = "okay";
+
+		port {
+			ovc_cam_0: endpoint {
+				remote-endpoint = <&mipi_csi0_ep>;
+				data-lanes = <4>;
+				clock-noncontinuous;
+				link-frequencies = /bits/ 64 <456000000>;
+			};
+		};
+	};
+};
+*/
+
+&cameradev {
+    status = "okay";
+};
+
+&isi_0 {
+    status = "okay";
+
+    cap_device {
+        status = "okay";
+    };
+
+    m2m_device {
+        status = "okay";
+    };
 };

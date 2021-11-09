@@ -9,4 +9,6 @@ IMAGE_FEATURES_append = " \
 
 IMAGE_INSTALL_append = " \
     iperf3 \
+    v4l-utils \
+    devmem2 \
 "
